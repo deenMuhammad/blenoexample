@@ -1,6 +1,6 @@
 var bleno = require("bleno");
 
-const  TURN_LEFT_CHARCTERISTIC_UUID = "ef1b44c0-f227-11e8-8eb2-f2801f1b9fd1"
+const  TURN_LEFT_CHARCTERISTIC_UUID = "ef1b44c0-f227-11e8-8eb2-f2801f1b9fd1";
 class TurnLeftCharactersitic extends bleno.Characteristic {
     constructor() {
         super({
