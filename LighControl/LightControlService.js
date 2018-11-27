@@ -21,7 +21,34 @@ class StopCharacteristic extends bleno.Characteristic {
     onReadRequest(offset, callback) {
         try {
             const result = 1; //hard coded result
-            console.log('Stop Button Pressed');
+            console.log('Stop Button Pressed');//here comes code for raspberry hardware control code
+            let data = new Buffer(1);
+            data.writeUInt8(result, 0);
+            callback(this.RESULT_SUCCESS, data);
+        } catch (err) {
+            console.error(err);
+            callback(this.RESULT_UNLIKELY_ERROR);
+        }
+    }
+}
+class TurnRightCharacteristic extends bleno.Characteristic {
+    constructor() {
+        super({
+            uuid: TurnRightUUID,
+            properties: ["read"],
+            value: null,
+            descriptors: [
+                new bleno.Descriptor({
+                    uuid: "2901",
+                    value: "Turn Right Button"
+                })
+            ]
+        });
+    }
+    onReadRequest(offset, callback) {
+        try {
+            const result = 1; //hard coded result
+            console.log('Turn Right Button Pressed');//here comes code for raspberry hardware control code
             let data = new Buffer(1);
             data.writeUInt8(result, 0);
             callback(this.RESULT_SUCCESS, data);
@@ -32,6 +59,33 @@ class StopCharacteristic extends bleno.Characteristic {
     }
 }
 
+class TurnLeftCharacteristic extends bleno.Characteristic {
+    constructor() {
+        super({
+            uuid: TurnLeftUUID,
+            properties: ["read"],
+            value: null,
+            descriptors: [
+                new bleno.Descriptor({
+                    uuid: "2901",
+                    value: "Turn Left Button"
+                })
+            ]
+        });
+    }
+    onReadRequest(offset, callback) {
+        try {
+            const result = 1; //hard coded result
+            console.log('Turn Left Button Pressed');//here comes code for raspberry hardware control code
+            let data = new Buffer(1);
+            data.writeUInt8(result, 0);
+            callback(this.RESULT_SUCCESS, data);
+        } catch (err) {
+            console.error(err);
+            callback(this.RESULT_UNLIKELY_ERROR);
+        }
+    }
+}
 
 bleno.on("advertisingStart", err => {
     console.log("Configuring services...");
@@ -41,10 +95,14 @@ bleno.on("advertisingStart", err => {
         return;
     }
     let stopChar = new StopCharacteristic();
+    let rightChar = new TurnRightCharacteristic();
+    let leftChar = new TurnLeftCharacteristic();
     let LightService = new bleno.PrimaryService({
         uuid: Light_service_UUID,
         characteristics: [
-            stopChar
+            stopChar,
+            rightChar,
+            leftChar
         ]
     });
     bleno.setServices([LightService], err => {
