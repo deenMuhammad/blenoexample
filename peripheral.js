@@ -47,7 +47,7 @@ bleno.on('advertisingStart', function(err) {
     // along with our characteristics.
     //
     bleno.setServices([
-      pizzaService
+      lightService
     ]);
   }
 });
