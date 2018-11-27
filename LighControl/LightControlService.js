@@ -4,20 +4,37 @@ var StopCharacteristic = require('./stopCharacterstic');
 var TurnRightCharacteristic = require('./turnRightCharacteristic');
 var TurnLeftCharacteristic = require('./turnLeftCharctersitic');
 
-var util = require('util');
+bleno.on("advertisingStart", err => {
+console.log("Configuring services...");
+    
+if(err) {
+    console.error(err);
+    return;
+} 
 
-
-function LightService() {
-    bleno.PrimaryService.call(this, {
-        uuid: LIGHTSERVICEUUID,
-        characteristics: [
-            StopCharacteristic,
-            TurnRightCharacteristic,
-            TurnLeftCharacteristic
-        ]
+let lightService = new bleno.PrimaryService({
+    uuid: LIGHTSERVICEUUID,
+    characteristics: [
+        StopCharacteristic,
+        TurnRightCharacteristic,
+        TurnLeftCharacteristic
+    ]
+});
+bleno.setServices([lightService], err => {
+    if(err)
+        console.log(err);
+    else
+        console.log("Services configured");
+});
+});
+bleno.on("stateChange", state => {
+if (state === "poweredOn") {
+    
+    bleno.startAdvertising("Calculator", [CALCULATOR_SERVICE_UUID], err => {
+        if (err) console.log(err);
     });
-}
-
-util.inherits(LightService, bleno.PrimaryService);
-
-module.exports = LightService;
+} else {
+    console.log("Stopping...");
+    bleno.stopAdvertising();
+}        
+});
