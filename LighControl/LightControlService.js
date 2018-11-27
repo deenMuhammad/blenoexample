@@ -30,7 +30,7 @@ bleno.setServices([lightService], err => {
 bleno.on("stateChange", state => {
 if (state === "poweredOn") {
     
-    bleno.startAdvertising("Calculator", [CALCULATOR_SERVICE_UUID], err => {
+    bleno.startAdvertising("Calculator", [LIGHTSERVICEUUID], err => {
         if (err) console.log(err);
     });
 } else {
