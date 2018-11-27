@@ -1,7 +1,6 @@
 var bleno = require("bleno");
 
-var Descriptor = bleno.Descriptor;
-var Characteristic = bleno.Characteristic;
+
 const  TURN_RIGHT_CHARCTERISTIC_UUID = "ef1b433a-f227-11e8-8eb2-f2801f1b9fd1"
 class TurnRightCharactersitic extends bleno.Characteristic {
     constructor() {

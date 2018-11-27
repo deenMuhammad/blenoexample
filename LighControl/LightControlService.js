@@ -12,7 +12,8 @@ function LightService() {
         uuid: LIGHTSERVICEUUID,
         characteristics: [
             StopCharacteristic,
-            TurnRightCharacteristic
+            TurnRightCharacteristic,
+            TurnLeftCharacteristic
         ]
     });
 }

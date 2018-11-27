@@ -1,7 +1,6 @@
 var bleno = require("bleno");
 
-var Descriptor = bleno.Descriptor;
-var Characteristic = bleno.Characteristic;
+
 const STOP_CHARCTERISTIC_UUID = "ef1b3f7a-f227-11e8-8eb2-f2801f1b9fd1"
 class StopCharacteristic extends bleno.Characteristic {
     constructor() {
