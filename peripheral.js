@@ -6,21 +6,14 @@ var util = require('util');
 //
 var bleno = require("bleno");
 
-//
-// Pizza
-// * has crust
-// * has toppings
-// * can be baked
-//
-var pizza = require('./pizza');
 
 //
-// The BLE Pizza Service!
+// The BLE Light Service!
 //
 var LightService = require('./LighControl/LightControlService');
 
 //
-// A name to advertise our Pizza Service.
+// A name to advertise our Light Service.
 //
 var name = 'Light Service';
 var lightService = new LightService();
