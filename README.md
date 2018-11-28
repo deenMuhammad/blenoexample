@@ -12,7 +12,8 @@ If You want to use this in raspberry pi. Follow the steps below.
     `npm install bleno --save`
 6. The bluetooth system service needs to be disabled for bleno to work, otherwise some operations will just fail silently. This is quite easy to miss" 
     `sudo service bluetooth stop
-     sudo hciconfig hci0 up # reactivate hci0 or another hciX you want to use`
+     sudo hciconfig hci0 up`
+     <br># reactivate hci0 or another hciX you want to use`
 7. Run the application: 
     `sudo npm run peripheral`
 
