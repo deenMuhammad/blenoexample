@@ -22,8 +22,6 @@ If You want to use this in raspberry pi. Follow the steps below.
      <br># reactivate hci0 or another hciX you want to use`
 7. Run the application: 
     `sudo npm run peripheral`
->>>>>>> a1790bb138f37b540f8657a3ba46a92795df0694
-
 8. It is time to look for the peripheral in your BLE Client App. 
 
 Enjoy 😊
