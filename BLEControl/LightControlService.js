@@ -166,7 +166,7 @@ bleno.on("advertisingStart", err => {
 bleno.on("stateChange", state => {
     if (state === "poweredOn") {
 
-        bleno.startAdvertising("LightService", [Light_service_UUID], err => {
+        bleno.startAdvertising("Raspberry BLE Conrol", [Light_service_UUID], err => {
             if (err) console.log(err);
         });
     } else {
