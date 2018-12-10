@@ -3,7 +3,7 @@ const Light_service_UUID = "ea87e794-ec03-11e8-8eb2-f2801f1b9fd1";
 const TurnLeftUUID = "ea87ea50-ec03-11e8-8eb2-f2801f1b9fd1";
 const TurnRightUUID = "ea87eba4-ec03-11e8-8eb2-f2801f1b9fd1";
 const StopUUID = "ea87ecda-ec03-11e8-8eb2-f2801f1b9fd1";
-const COUNTER_CHAR_UUID = "00010001-9FAB-43C8-9231-40F6E305F96D";
+const COUNTER_CHAR_UUID = "ef1b472c-f227-11e8-8eb2-f2801f1b9fd1";
 
 
 class CounterCharacteristic extends bleno.Characteristic {

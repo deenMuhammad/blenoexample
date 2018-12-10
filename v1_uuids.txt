@@ -8,7 +8,7 @@ ef1b44c0-f227-11e8-8eb2-f2801f1b9fd1 //turn left characteristic UUID
 
 ef1b45f6-f227-11e8-8eb2-f2801f1b9fd1 //LIGHT SERVICE UUIDs
 
-ef1b472c-f227-11e8-8eb2-f2801f1b9fd1
+ef1b472c-f227-11e8-8eb2-f2801f1b9fd1 //allocated for speed
 
 ef1b4a4c-f227-11e8-8eb2-f2801f1b9fd1
 
