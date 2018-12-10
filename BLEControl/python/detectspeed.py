@@ -1,6 +1,7 @@
 import time
 import datetime
 import math
+import sys
 import RPi.GPIO as GPIO
 """
 def calculateSpeed():
@@ -25,7 +26,8 @@ def calculateSpeed():
    dist_km = circ_cm/100000          # convert cm to km
    km_per_sec = dist_km / elapsed      # calculate KM/sec
    speedKmh= int(math.floor(km_per_sec * 3600))     # calculate KM/h
-   print speedKmh , "km/hr"
+   print(speedKmh)
+   sys.stdout.flush()
    
    start = done
 
