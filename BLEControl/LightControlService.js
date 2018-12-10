@@ -48,7 +48,7 @@ class CounterCharacteristic extends bleno.Characteristic {
 
             process.stdout.on('data',function(chunk){
 
-                var textChunk = chunk.toString('utf8');// buffer to string
+                var textChunk = chunk//.toString('utf8');// buffer to string
                 console.log(textChunk)
                 data = parseInt(textChunk)
             });
