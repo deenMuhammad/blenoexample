@@ -20,6 +20,7 @@ class CounterCharacteristic extends bleno.Characteristic {
     onSubscribe(maxValueSize, updateValueCallback) {
         console.log(`Counter subscribed, max value size is ${maxValueSize}`);
         this.updateValueCallback = updateValueCallback;
+        this.start();
     }
 
     onUnsubscribe() {
