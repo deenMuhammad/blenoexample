@@ -3,6 +3,55 @@ const Light_service_UUID = "ea87e794-ec03-11e8-8eb2-f2801f1b9fd1";
 const TurnLeftUUID = "ea87ea50-ec03-11e8-8eb2-f2801f1b9fd1";
 const TurnRightUUID = "ea87eba4-ec03-11e8-8eb2-f2801f1b9fd1";
 const StopUUID = "ea87ecda-ec03-11e8-8eb2-f2801f1b9fd1";
+const COUNTER_CHAR_UUID = "00010001-9FAB-43C8-9231-40F6E305F96D";
+
+
+class CounterCharacteristic extends bleno.Characteristic {
+    constructor() {
+        super({
+            uuid: COUNTER_CHAR_UUID,
+            properties: ["notify"],
+            value: null
+        });
+
+        this.counter = 0;
+    }
+
+    onSubscribe(maxValueSize, updateValueCallback) {
+        console.log(`Counter subscribed, max value size is ${maxValueSize}`);
+        this.updateValueCallback = updateValueCallback;
+    }
+
+    onUnsubscribe() {
+        console.log("Counter unsubscribed");
+        this.updateValueCallback = null;
+    }    
+
+    sendNotification(value) {
+        if(this.updateValueCallback) {
+            console.log(`Sending notification with value ${value}`);
+
+            const notificationBytes = new Buffer(2);
+            notificationBytes.writeInt16LE(value);
+
+            this.updateValueCallback(notificationBytes);
+        }
+    }
+
+    start() {
+        console.log("Starting counter");
+        this.handle = setInterval(() => {
+            this.counter = (this.counter + 1) % 0xFFFF;
+            this.sendNotification(this.counter);
+        }, 1000);
+    }
+
+    stop() {
+        console.log("Stopping counter");
+        clearInterval(this.handle);
+        this.handle = null;
+    }
+}
 
 class StopCharacteristic extends bleno.Characteristic {
     constructor() {
@@ -97,11 +146,13 @@ bleno.on("advertisingStart", err => {
     let stopChar = new StopCharacteristic();
     let rightChar = new TurnRightCharacteristic();
     let leftChar = new TurnLeftCharacteristic();
+    let speed = new CounterCharacteristic();
     let LightService = new bleno.PrimaryService({
         uuid: Light_service_UUID,
         characteristics: [
             stopChar,
             rightChar,
+            speed,
             leftChar
         ]
     });
