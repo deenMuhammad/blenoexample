@@ -50,7 +50,7 @@ class CounterCharacteristic extends bleno.Characteristic {
 
                 var textChunk = chunk.toString('utf8');// buffer to string
                 console.log("+ "+textChunk)
-                data = parseInt(textChunk)
+                data = parseInt('1')
             });
             this.counter = (data) % 0xFFFF;
             this.sendNotification(this.counter);
