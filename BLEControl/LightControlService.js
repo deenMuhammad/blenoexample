@@ -72,7 +72,7 @@ class StopCharacteristic extends bleno.Characteristic {
         try {
             const result = 1; //hard coded result
             const spawn = require("child_process").spawn;
-            const pythonProcess = spawn('python',["./test.py"]);
+            const pythonProcess = spawn('python',["./python/test.py"]);
 
             pythonProcess.stdout.on('data', (data) => {
                 console.log(`stdout: ${data}`);
