@@ -1,5 +1,5 @@
 const spawn = require("child_process").spawn;
-const pythonProcess = spawn('python',["./test.py"]);
+const pythonProcess = spawn('sudo','python',["./test.py"]);
 
 pythonProcess.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
