@@ -51,11 +51,12 @@ class CounterCharacteristic extends bleno.Characteristic {
                 this.sendNotification(this.counter);
             }
             var binded = f1.bind(this);
-            process.stdout.on('data',binded);
+            setInterval(
+            process.stdout.on('data',binded),500);
             // data = parseInt(chunk);
             // this.counter = (data) % 0xFFFF;
             // this.sendNotification(counter);
-        };
+        }; 
     }
 
     stop() {
