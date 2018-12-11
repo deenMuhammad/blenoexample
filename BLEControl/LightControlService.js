@@ -54,7 +54,7 @@ class CounterCharacteristic extends bleno.Characteristic {
             // data = parseInt(chunk);
             // this.counter = (data) % 0xFFFF;
             // this.sendNotification(counter);
-        },1);
+        },1000);
     }
 
     stop() {
