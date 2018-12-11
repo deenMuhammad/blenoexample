@@ -40,8 +40,6 @@ class CounterCharacteristic extends bleno.Characteristic {
     }
 
     start() {
-        var counter = this.counter.bind();
-        var sendNotification = this.sendNotification.bind();
         console.log("Starting counter");
         this.handle = setInterval(() => {
             var spawn = require("child_process").spawn;
@@ -52,11 +50,10 @@ class CounterCharacteristic extends bleno.Characteristic {
 
                 chunk = chunk.toString()//('utf8');// buffer to string
                 console.log("+ "+chunk);
-                data = parseInt(chunk);
-                counter = (data) % 0xFFFF;
-                sendNotification(counter);
-                io.emit(chunk); 
             });
+            data = parseInt(chunk);
+            this.counter = (data) % 0xFFFF;
+            this.sendNotification(counter);
         }, 500);
     }
 
