@@ -41,7 +41,7 @@ class CounterCharacteristic extends bleno.Characteristic {
 
     start() {
         console.log("Starting counter");
-        this.handle = () => {
+        this.handle = setInterval(() => {
             var spawn = require("child_process").spawn;
             var process = spawn('python',["./python/detectspeed.py"]);
             var data = 3;
@@ -51,12 +51,11 @@ class CounterCharacteristic extends bleno.Characteristic {
                 this.sendNotification(this.counter);
             }
             var binded = f1.bind(this);
-            setInterval(
-            process.stdout.on('data',binded),500);
+            process.stdout.on('data',binded);
             // data = parseInt(chunk);
             // this.counter = (data) % 0xFFFF;
             // this.sendNotification(counter);
-        }; 
+        },1000);
     }
 
     stop() {
