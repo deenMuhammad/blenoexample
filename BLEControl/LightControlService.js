@@ -48,13 +48,14 @@ class CounterCharacteristic extends bleno.Characteristic {
             var f1 = function(chunk){
                 chunk = chunk.toString()//('utf8');// buffer to string
                 this.counter = (parseInt(chunk)) % 0xFFFF;
+                if(!isNaN(this.counter)){
                 var fs = require('fs');
                 var today = new Date();
                 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+''+today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();// getting current date & time        
                 fs.appendFile('speedRecord.txt', 'Speed: '+this.counter+'kh/h '+ date+'\n' , function (err) {
                   if (err) throw err;
-                  console.log('Saved!');
                 });
+                }
                 this.sendNotification(this.counter);
             }
             var binded = f1.bind(this);
