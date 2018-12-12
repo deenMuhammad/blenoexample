@@ -4,6 +4,7 @@ const TurnLeftUUID = "ea87ea50-ec03-11e8-8eb2-f2801f1b9fd1";
 const TurnRightUUID = "ea87eba4-ec03-11e8-8eb2-f2801f1b9fd1";
 const StopUUID = "ea87ecda-ec03-11e8-8eb2-f2801f1b9fd1";
 const COUNTER_CHAR_UUID = "ef1b472c-f227-11e8-8eb2-f2801f1b9fd1";
+var fs = require('fs');
 
 
 class CounterCharacteristic extends bleno.Characteristic {
@@ -47,6 +48,12 @@ class CounterCharacteristic extends bleno.Characteristic {
             var f1 = function(chunk){
                 chunk = chunk.toString()//('utf8');// buffer to string
                 this.counter = (parseInt(chunk)) % 0xFFFF;
+                var today = new Date();
+                var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+''+today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();// getting current date & time        
+                fs.appendFile('mynewfile1.txt', 'Speed: '+counter+' '+ date , function (err) {
+                  if (err) throw err;
+                  console.log('Saved!');
+                });
                 this.sendNotification(this.counter);
             }
             var binded = f1.bind(this);
