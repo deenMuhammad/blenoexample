@@ -51,7 +51,7 @@ class CounterCharacteristic extends bleno.Characteristic {
                 var fs = require('fs');
                 var today = new Date();
                 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+''+today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();// getting current date & time        
-                fs.appendFile('speedRecord.txt', 'Speed: '+this.counter+'kh/h '+ date , function (err) {
+                fs.appendFile('speedRecord.txt', 'Speed: '+this.counter+'kh/h '+ date+'\n' , function (err) {
                   if (err) throw err;
                   console.log('Saved!');
                 });
